@@ -1,0 +1,116 @@
+{ "sandbox":{
+    "url": "https://sandbox.studio.marketscale.com/",
+    "admin": {
+      "email": "mark_sa@yopmail.com",
+      "password": "Testing!23$",
+      "name": "MarkQA Admin"
+    },
+    "standard": {
+      "email": "mark_stnd@yopmail.com",               
+      "password": "Testing!23$",
+      "name": "MarkQA Standard"
+    },
+    "contributor": {
+      "email": "mark_contri@yopmail.com",
+      "password": "Testing!23$",
+      "name": "MarkQA Contributor"
+    },
+    "superAdmin": {
+      "email": "marknewsuperadm1@marketscale.com",
+      "password": "Testing!23$",
+      "name": "Marknew Superadmin"
+    },
+    "MSAdmin": {
+      "email": "testsummaries@marketscale.com",
+      "password": "Testing!23$",
+      "name": "Mark MS ADMIN"
+    },
+    "editor": {
+      "email": "mark_editor1@yopmail.com",
+      "password": "Foodtexas5",
+      "name": "MarkQA Editor"
+    },
+    "expert": {
+      "email": "markqa1_expert1@yopmail.com",
+      "password": "Testing!23$",
+      "name": "Mark QA1 Expert1"
+    },
+    "expert1": {
+      "email": "markqa1_expert1@yopmail.com",
+      "password": "Testing!23$",
+      "name": "Mark QA1 Expert1 (VIP Guest Pass)"
+    },
+    "guestuser": {
+      "email": "guestuser2@yopmail.com",
+      "password": "Testing!23$",
+      "name": "Guest User2"
+    }
+
+  },
+  "staging":{
+    "url": "https://staging.studio.marketscale.com/",
+    "admin": {
+      "email": "mark_stg_adm@yopmail.com",
+      "password": "Testing!23$",
+      "name": "MarkQA Admin"
+    },
+    "standard": {
+      "email": "mark_stg_stnd@yopmail.com",
+      "password": "Testing!23$",
+      "name": "MarkQA Standard"
+    },
+    "contributor": {
+      "email": "mark_stg_contri@yopmail.com",
+      "password": "Testing!23$",
+      "name": "MarkQA Contributor"
+    },
+    "MSAdmin": {
+      "email": "testsummaries@marketscale.com",
+      "password": "Testing!23$",
+      "name": "MD MS Admin"
+    },
+    "superAdmin": {
+      "email": "ben+superuser2@marketscale.com",
+      "password": "Foodtexas5",
+      "name": "Ostap Mushynskiy"
+    },
+    "editor": {
+      "email": "qamark_editor3@yopmail.com",
+      "password": "Testing!23$",
+      "name": "Mark Editor QA"
+    },
+    "expert1": {
+      "email": "ben+superuser2@marketscale.com",
+      "password": "Foodtexas5",
+      "name": "Ostap Mushynskiy"
+    },
+    "expert":{
+      "email": "newstagexpertmd@yopmail.com",
+      "password": "Testing!23$",
+      "name": "Mark NewExpert1"
+    }
+  },
+  "prod":{
+    "url": "https://studio.marketscale.com/",
+    "admin": {
+      "email": "integerField",
+      "password": "Integer"
+    },
+    "standard": {
+      "email": "integerField",
+      "password": "Integer"
+    },
+    "contributor": {
+      "email": "integerField",
+      "password": "Integer"
+    },
+    "superAdmin": {
+      "email": "integerField",
+      "password": "Integer"
+    },
+    "editor": {
+      "email": "integerField",
+      "password": "Integer"
+    }
+  }
+}
