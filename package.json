@@ -1,0 +1,21 @@
+{
+  "name": "marketscale-regression-automation",
+  "version": "1.0.0",
+  "description": "MarketScale QA Automation - Regression Suite",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.13.0",
+    "cypress-browser-permissions": "^1.1.0",
+    "cypress-mochawesome-reporter": "^3.8.0",
+    "dayjs": "^1.11.10"
+  },
+  "dependencies": {
+    "playwright-webkit": "^1.41.1"
+  }
+}
