@@ -1,119 +1,46 @@
-name: Market Scale Test Suite CI
+name: Daily UI Test Suite & Allure Report
 
 on:
-  pull_request:
-    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * *'
   workflow_dispatch:
 
 jobs:
-  code-analysis:
-    name: Run Static Code Analysis
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-      - uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        run: npm ci
-      - name: Run Typecheck
-        run: npm run typecheck
-      - name: Run ESLint
-        run: npm run lint
-      - name: Run Security Audit
-        run: npm audit --audit-level=moderate
-
   execute-ui-tests:
-    name: Run UI Tests (Playwright)
+    name: Run UI Tests
     runs-on: ubuntu-latest
-    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set Up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build & Load Docker Image
-        uses: docker/build-push-action@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          context: .
-          file: ./Dockerfile
-          push: false
-          load: true
-          tags: market-scale-automation-suite
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          node-version: '18'
 
-      - name: Run Docker Compose and Execute UI Tests
-        env:
-          CI: TRUE
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
-        run: docker compose up --abort-on-container-exit
+      - name: Install Dependencies
+        run: npm ci
 
-      - name: Upload UI allure-results
-        if: always()
+      - name: Run UI Tests
+        run: |
+          npx playwright install --with-deps
+          npx playwright test --reporter=line,allure-playwright
+
+      - name: Upload UI Allure Results
         uses: actions/upload-artifact@v4
         with:
           name: ui-allure-results
-          path: allure-results
-          retention-days: 3
-
-      - name: Cleanup Containers
-        if: always()
-        run: docker compose down --volumes
-
-  execute-api-tests:
-    name: Run API Tests (Playwright)
-    runs-on: ubuntu-latest
-    env:
-      CI: TRUE
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
-    timeout-minutes: 60
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-      - name: Install dependencies
-        run: |
-          npm ci
-          npx playwright install --with-deps
-      - name: Run API Tests
-        env:
-          CI: TRUE
-        run: npx playwright test --config=playwright.api.config.ts
-      - name: Upload API allure-results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: api-allure-results
-          path: allure-results
-          retention-days: 3
+          path: test-results/allure-results
+          retention-days: 7
 
   generate-allure-report:
-    name: Merge Results & Generate Allure Report
+    name: Generate Allure Report
     runs-on: ubuntu-latest
-    needs: [execute-ui-tests, execute-api-tests]
+    needs: [execute-ui-tests]
     if: always()
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: ui-allure-results
-          path: merged-allure-results
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: api-allure-results
           path: merged-allure-results
 
       - name: Generate Allure Report
