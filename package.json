@@ -1,21 +1,54 @@
 {
-  "name": "marketscale-regression-automation",
+  "name": "market-scale-test-suite",
   "version": "1.0.0",
-  "description": "MarketScale QA Automation - Regression Suite",
   "main": "index.js",
   "scripts": {
-    "cypress:open": "cypress open"
+    "test": "npx playwright test",
+    "lint": "npx eslint \"**/*.ts\"",
+    "typecheck": "tsc --noEmit",
+    "docker": "docker-compose up --build",
+    "test:headed": "npx playwright test --headed",
+    "allure": "npx playwright test --reporter=line,allure-playwright",
+    "allure:report": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "serve:allure": "npm run allure:report && npm run allure:open",
+    "html": "npx playwright test --reporter=html",
+    "serve:html": "npx playwright show-report",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "description": "",
   "devDependencies": {
-    "cypress": "^13.13.0",
-    "cypress-browser-permissions": "^1.1.0",
-    "cypress-mochawesome-reporter": "^3.8.0",
-    "dayjs": "^1.11.10"
+    "@eslint/js": "^9.25.0",
+    "@playwright/test": "^1.56.1",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^22.13.1",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
+    "allure-commandline": "^2.34.0",
+    "allure-playwright": "^3.4.1",
+    "eslint": "^9.25.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-playwright": "^2.2.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0",
+    "prettier": "^3.5.3",
+    "typescript-eslint": "^8.30.1"
   },
   "dependencies": {
-    "playwright-webkit": "^1.41.1"
+    "@aws-sdk/client-secrets-manager": "^3.816.0",
+    "dotenv": "^16.4.7",
+    "jsonwebtoken": "^9.0.2",
+    "playwright": "^1.56.1"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx,md,json}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   }
 }
