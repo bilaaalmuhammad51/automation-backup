@@ -12,3 +12,4 @@ storageState.json
 .idea
 TestAutomationKey-devops.key
 TestAutomationKey-flows2prod.key
+.DS_Store
