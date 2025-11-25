@@ -20,5 +20,6 @@ export enum Timeout {
   MEDIUM = 10000,
   MEDIUM_LONG = 20000,
   LONG = 30000,
+  ONE_MINUTE = 60000,
   EXTRA_LONG = 80000,
 }
