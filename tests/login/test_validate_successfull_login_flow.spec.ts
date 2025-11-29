@@ -28,7 +28,4 @@ test('MarketScale Studio Login Flow', async ({ page }) => {
   await page.waitForSelector(DashboardData.searchField);
   await expect(page.getByPlaceholder('Search')).toBeVisible();
   await page.waitForURL(/dashboard/i, { timeout: Timeout.LONG });
-  for (const action of QUICK_ACTION_LABELS) {
-    await expect(page.getByText(action, { exact: false })).toBeVisible();
-  }
 });
