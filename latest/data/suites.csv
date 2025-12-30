@@ -1,2 +1,2 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","10141","MarketScale Studio Login Flow","chromium","2025-12-30","passed","2025-12-30","","login/test_validate_successfull_login_flow.spec.ts","",""
+"","31643","MarketScale Studio Login Flow","chromium","2025-12-30","passed","2025-12-30","","login/test_validate_successfull_login_flow.spec.ts","",""
