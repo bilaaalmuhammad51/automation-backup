@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","10983","MarketScale Studio Login Flow","chromium","2026-01-06","passed","2026-01-06","","login/test_validate_successfull_login_flow.spec.ts","",""
